@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>baseball-versus | KBO 전력 비교 서비스</title>
   <style>
-    /* 1. 기본 스타일 설정 (스탯티즈 스타일) */
+    /* 1. 기본 스타일 설정 */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     body {
-      background-color: #f4f6f9; /* 스탯티즈 특유의 연회색 배경 */
+      background-color: #f4f6f9;
       color: #333333;
       font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
       line-height: 1.6;
@@ -20,7 +20,7 @@
 
     /* 2. 상단 네비게이션 헤더 */
     header {
-      background-color: #1e2d42; /* 스탯티즈 네이비 */
+      background-color: #1e2d42;
       color: #ffffff;
       padding: 15px 20px;
       display: flex;
@@ -36,7 +36,7 @@
       letter-spacing: -0.5px;
     }
     .logo span {
-      color: #3182ce; /* 포인트 파란색 */
+      color: #3182ce;
     }
     nav a {
       color: #cbd5e0;
@@ -51,7 +51,7 @@
       padding-bottom: 3px;
     }
 
-    /* 3. 메인 히어로 섹션 (소개 & 퀵버튼) */
+    /* 3. 메인 히어로 섹션 */
     .hero {
       background-color: #2b3e55;
       color: white;
@@ -122,7 +122,7 @@
       justify-content: space-between;
     }
 
-    /* 5. 추천 라이벌 대결 카드 (클릭 가능한 박스 스타일 추가) */
+    /* 5. 추천 라이벌 대결 카드 */
     .match-preview {
       display: flex;
       align-items: center;
@@ -161,39 +161,19 @@
       font-size: 14px;
     }
 
-    /* 6. KBO 순위 요약 데이터 표 */
-    .ranking-table {
-      width: 100%;
-      border-collapse: collapse;
+    /* 6. 실시간 KBO 순위 안내 박스 */
+    .rank-card-box {
       text-align: center;
-      font-size: 14px;
+      padding: 30px 20px;
+      background: #ebf8ff;
+      border: 1px solid #bee3f8;
+      border-radius: 8px;
     }
-    .ranking-table th {
-      background-color: #2d3748;
-      color: white;
-      padding: 8px;
-    }
-    .ranking-table td {
-      padding: 10px 8px;
-      border-bottom: 1px solid #edf2f7;
-    }
-    .ranking-table tr:hover {
-      background-color: #f7fafc;
-    }
-    /* 팀명 링크 스타일 */
-    .team-link {
-      color: #2d3748;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-    .team-link:hover {
-      color: #3182ce; /* 마우스 올렸을 때 파란색 */
-      text-decoration: underline;
-    }
-    .top-rank {
-      font-weight: bold;
+    .rank-card-box p {
+      font-size: 16px;
       color: #2b6cb0;
+      font-weight: bold;
+      margin-bottom: 15px;
     }
 
     /* 7. 푸터 */
@@ -208,7 +188,7 @@
 </head>
 <body>
 
-  <!-- 상단 메뉴바 -->
+  <!-- 상단 네비게이션 바 -->
   <header>
     <a href="index.html" class="logo">baseball-<span>versus</span></a>
     <nav>
@@ -228,13 +208,13 @@
     </div>
   </section>
 
-  <!-- 중앙 메인 컨텐츠 영역 -->
+  <!-- 메인 콘텐츠 영역 -->
   <div class="container">
     
-    <!-- 1. 추천 라이벌전 카드 (박스 클릭 시 구글 검색으로 이동) -->
+    <!-- 1. 추천 라이벌 대결 -->
     <div class="card">
       <div class="card-title">
-        <span>🔥 추천 라이벌 맞대결 (박스를 누르면 구글 검색으로 이동)</span>
+        <span>🔥 추천 라이벌 맞대결</span>
       </div>
       <div class="match-preview">
         <a href="https://www.google.com/search?q=KIA+삼성+야구" target="_blank" class="team-box">
@@ -247,94 +227,17 @@
       </div>
     </div>
 
-    <!-- 2. KBO 실시간 팀 순위표 (구단 사이트 연결 완료) -->
+    <!-- 2. 실시간 KBO 순위 이동 링크 카드 -->
     <div class="card">
       <div class="card-title">
-        <span>📊 KBO 팀 순위 전체 (팀명 클릭 시 구단 사이트 이동)</span>
+        <span>📊 KBO 팀 순위</span>
       </div>
-      <table class="ranking-table">
-        <thead>
-          <tr>
-            <th>순위</th>
-            <th>팀명</th>
-            <th>경기수</th>
-            <th>승/패/무</th>
-            <th>승률</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="top-rank">1</td>
-            <td><a href="https://www.tigers.co.kr" target="_blank" class="team-link">KIA</a></td>
-            <td>144</td>
-            <td>87승 55패 2무</td>
-            <td class="top-rank">0.613</td>
-          </tr>
-          <tr>
-            <td class="top-rank">2</td>
-            <td><a href="https://www.samsunglions.com" target="_blank" class="team-link">삼성</a></td>
-            <td>144</td>
-            <td>78승 64패 2무</td>
-            <td class="top-rank">0.549</td>
-          </tr>
-          <tr>
-            <td class="top-rank">3</td>
-            <td><a href="https://www.lgtwins.com" target="_blank" class="team-link">LG</a></td>
-            <td>144</td>
-            <td>76승 66패 2무</td>
-            <td class="top-rank">0.535</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td><a href="https://www.doosanbears.com" target="_blank" class="team-link">두산</a></td>
-            <td>144</td>
-            <td>74승 68패 2무</td>
-            <td>0.521</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td><a href="https://www.ktwiz.co.kr" target="_blank" class="team-link">KT</a></td>
-            <td>144</td>
-            <td>72승 70패 2무</td>
-            <td>0.507</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td><a href="https://www.ssglanders.com" target="_blank" class="team-link">SSG</a></td>
-            <td>144</td>
-            <td>71승 70패 3무</td>
-            <td>0.504</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td><a href="https://www.giantsclub.com" target="_blank" class="team-link">롯데</a></td>
-            <td>144</td>
-            <td>66승 74패 4무</td>
-            <td>0.471</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td><a href="https://www.hanwhaeagles.co.kr" target="_blank" class="team-link">한화</a></td>
-            <td>144</td>
-            <td>66승 76패 2무</td>
-            <td>0.465</td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td><a href="https://www.ncdinos.com" target="_blank" class="team-link">NC</a></td>
-            <td>144</td>
-            <td>61승 81패 2무</td>
-            <td>0.430</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td><a href="https://www.heroesbaseball.co.kr" target="_blank" class="team-link">키움</a></td>
-            <td>144</td>
-            <td>58승 86패 0무</td>
-            <td>0.403</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="rank-card-box">
+        <p>⚡ 실시간 KBO 최신 순위를 확인해보세요.</p>
+        <a href="https://m.sports.naver.com/kbaseball/record/index" target="_blank" class="btn btn-primary">
+          👉 현재 순위표 보기
+        </a>
+      </div>
     </div>
 
   </div>
@@ -342,7 +245,6 @@
   <!-- 푸터 -->
   <footer>
     <p>© 2026 baseball-versus. All rights reserved.</p>
-    <p>데이터 출처: KBO 공식 기록 참고</p>
   </footer>
 
 </body>
