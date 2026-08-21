@@ -122,13 +122,13 @@
       justify-content: space-between;
     }
 
-    /* 5. 추천 라이벌 대결 카드 */
+    /* 5. 랜덤 추천 라이벌 대결 카드 */
     .match-preview {
       display: flex;
       align-items: center;
       justify-content: space-around;
       background: #f7fafc;
-      padding: 15px;
+      padding: 20px 15px;
       border-radius: 6px;
       text-align: center;
     }
@@ -139,11 +139,12 @@
       border-radius: 8px;
       padding: 12px 20px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 17px;
       color: #1e2d42;
       text-decoration: none;
       transition: all 0.2s ease-in-out;
       cursor: pointer;
+      min-width: 160px;
     }
     .team-box:hover {
       background-color: #ebf8ff;
@@ -151,6 +152,13 @@
       color: #2b6cb0;
       transform: translateY(-2px);
       box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .team-box span {
+      display: block;
+      font-size: 12px;
+      color: #718096;
+      font-weight: normal;
+      margin-top: 4px;
     }
     .vs-badge {
       background-color: #e53e3e;
@@ -161,7 +169,7 @@
       font-size: 14px;
     }
 
-    /* 6. 실시간 KBO 순위 안내 박스 */
+    /* 6. KBO 순위 이동 안내 박스 */
     .rank-card-box {
       text-align: center;
       padding: 30px 20px;
@@ -211,23 +219,25 @@
   <!-- 메인 콘텐츠 영역 -->
   <div class="container">
     
-    <!-- 1. 추천 라이벌 대결 -->
+    <!-- 1. 추천 라이벌 대결 (랜덤 생성 카드) -->
     <div class="card">
       <div class="card-title">
-        <span>🔥 추천 라이벌 맞대결</span>
+        <span>🔥 추천 라이벌 매치</span>
       </div>
       <div class="match-preview">
-        <a href="https://www.google.com/search?q=KIA+삼성+야구" target="_blank" class="team-box">
-          ⚾ KIA 타이거즈
+        <a id="team1-btn" href="#" target="_blank" class="team-box">
+          <span id="team1-name">⚾ 로딩 중...</span>
+          <span>👉 상대전적 보기</span>
         </a>
         <div class="vs-badge">VS</div>
-        <a href="https://www.google.com/search?q=삼성+KIA+야구" target="_blank" class="team-box">
-          ⚾ 삼성 라이온즈
+        <a id="team2-btn" href="#" target="_blank" class="team-box">
+          <span id="team2-name">⚾ 로딩 중...</span>
+          <span>👉 상대전적 보기</span>
         </a>
       </div>
     </div>
 
-    <!-- 2. 실시간 KBO 순위 이동 링크 카드 -->
+    <!-- 2. KBO 순위 이동 링크 카드 -->
     <div class="card">
       <div class="card-title">
         <span>📊 KBO 팀 순위</span>
@@ -246,6 +256,53 @@
   <footer>
     <p>© 2026 baseball-versus. All rights reserved.</p>
   </footer>
+
+  <!-- 3. 랜덤 라이벌 대진 선택 자바스크립트 -->
+  <script>
+    const rivalPairs = [
+      {
+        t1: 'KIA 타이거즈',
+        t2: '삼성 라이온즈',
+        search1: 'KIA 삼성 야구 상대전적',
+        search2: '삼성 KIA 야구 상대전적'
+      },
+      {
+        t1: 'LG 트윈스',
+        t2: '두산 베어스',
+        search1: 'LG 두산 야구 상대전적',
+        search2: '두산 LG 야구 상대전적'
+      },
+      {
+        t1: '롯데 자이언츠',
+        t2: 'KIA 타이거즈',
+        search1: '롯데 KIA 야구 상대전적',
+        search2: 'KIA 롯데 야구 상대전적'
+      },
+      {
+        t1: '한화 이글스',
+        t2: 'SSG 랜더스',
+        search1: '한화 SSG 야구 상대전적',
+        search2: 'SSG 한화 야구 상대전적'
+      }
+    ];
+
+    function setRandomRival() {
+      // 대진 목록 중 무작위 1개 선택
+      const randomIndex = Math.floor(Math.random() * rivalPairs.length);
+      const selected = rivalPairs[randomIndex];
+
+      // 팀 이름 렌더링
+      document.getElementById('team1-name').innerText = '⚾ ' + selected.t1;
+      document.getElementById('team2-name').innerText = '⚾ ' + selected.t2;
+
+      // 구글 검색 링크 설정
+      document.getElementById('team1-btn').href = 'https://www.google.com/search?q=' + encodeURIComponent(selected.search1);
+      document.getElementById('team2-btn').href = 'https://www.google.com/search?q=' + encodeURIComponent(selected.search2);
+    }
+
+    // 페이지 로드 시 실행
+    document.addEventListener('DOMContentLoaded', setRandomRival);
+  </script>
 
 </body>
 </html>
