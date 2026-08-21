@@ -122,7 +122,7 @@
       justify-content: space-between;
     }
 
-    /* 5. 랜덤 추천 라이벌 대결 카드 */
+    /* 5. 랜덤 추천 대결 카드 */
     .match-preview {
       display: flex;
       align-items: center;
@@ -219,10 +219,10 @@
   <!-- 메인 콘텐츠 영역 -->
   <div class="container">
     
-    <!-- 1. 추천 라이벌 대결 (랜덤 생성 카드) -->
+    <!-- 1. 추천 랜덤 대결 카드 -->
     <div class="card">
       <div class="card-title">
-        <span>🔥 추천 라이벌 매치</span>
+        <span>🔥 오늘의 추천 맞대결</span>
       </div>
       <div class="match-preview">
         <a id="team1-btn" href="#" target="_blank" class="team-box">
@@ -257,50 +257,48 @@
     <p>© 2026 baseball-versus. All rights reserved.</p>
   </footer>
 
-  <!-- 3. 랜덤 라이벌 대진 선택 자바스크립트 -->
+  <!-- 3. 전체 10개 구단 무작위 대진 생성 자바스크립트 -->
   <script>
-    const rivalPairs = [
-      {
-        t1: 'KIA 타이거즈',
-        t2: '삼성 라이온즈',
-        search1: 'KIA 삼성 야구 상대전적',
-        search2: '삼성 KIA 야구 상대전적'
-      },
-      {
-        t1: 'LG 트윈스',
-        t2: '두산 베어스',
-        search1: 'LG 두산 야구 상대전적',
-        search2: '두산 LG 야구 상대전적'
-      },
-      {
-        t1: '롯데 자이언츠',
-        t2: 'KIA 타이거즈',
-        search1: '롯데 KIA 야구 상대전적',
-        search2: 'KIA 롯데 야구 상대전적'
-      },
-      {
-        t1: '한화 이글스',
-        t2: 'SSG 랜더스',
-        search1: '한화 SSG 야구 상대전적',
-        search2: 'SSG 한화 야구 상대전적'
-      }
+    const kboTeams = [
+      'KIA 타이거즈',
+      '삼성 라이온즈',
+      'LG 트윈스',
+      '두산 베어스',
+      'kt 위즈',
+      'SSG 랜더스',
+      '롯데 자이언츠',
+      '한화 이글스',
+      'NC 다이노스',
+      '키움 히어로즈'
     ];
 
     function setRandomRival() {
-      // 대진 목록 중 무작위 1개 선택
-      const randomIndex = Math.floor(Math.random() * rivalPairs.length);
-      const selected = rivalPairs[randomIndex];
+      // 10개 팀 중 첫 번째 팀 무작위 선택
+      const idx1 = Math.floor(Math.random() * kboTeams.length);
+      let idx2 = Math.floor(Math.random() * kboTeams.length);
 
-      // 팀 이름 렌더링
-      document.getElementById('team1-name').innerText = '⚾ ' + selected.t1;
-      document.getElementById('team2-name').innerText = '⚾ ' + selected.t2;
+      // 동일한 팀이 뽑히지 않도록 무한 루프 차단 및 재선택
+      while (idx1 === idx2) {
+        idx2 = Math.floor(Math.random() * kboTeams.length);
+      }
 
-      // 구글 검색 링크 설정
-      document.getElementById('team1-btn').href = 'https://www.google.com/search?q=' + encodeURIComponent(selected.search1);
-      document.getElementById('team2-btn').href = 'https://www.google.com/search?q=' + encodeURIComponent(selected.search2);
+      const team1 = kboTeams[idx1];
+      const team2 = kboTeams[idx2];
+
+      // 검색어 생성
+      const query1 = team1 + ' ' + team2 + ' 야구 상대전적';
+      const query2 = team2 + ' ' + team1 + ' 야구 상대전적';
+
+      // 팀 이름 화면 표시
+      document.getElementById('team1-name').innerText = '⚾ ' + team1;
+      document.getElementById('team2-name').innerText = '⚾ ' + team2;
+
+      // 구글 검색 링크 매핑
+      document.getElementById('team1-btn').href = 'https://www.google.com/search?q=' + encodeURIComponent(query1);
+      document.getElementById('team2-btn').href = 'https://www.google.com/search?q=' + encodeURIComponent(query2);
     }
 
-    // 페이지 로드 시 실행
+    // 페이지 로드 완료 시 무작위 대진 생성
     document.addEventListener('DOMContentLoaded', setRandomRival);
   </script>
 
